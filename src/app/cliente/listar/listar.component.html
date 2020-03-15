@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-8">
+        <h2>Lista de Clientes</h2>
+    </div>
+    <div class="col-4 ">
+        <a href="/cliente/adicionar" class="btn btn-primary float-right">Novo</a>
+    </div>
+</div>
+
+<table *ngIf="listaClientes"  class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Numero</th>
+            <th scope="col">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of listaClientes">
+            <td>{{cliente.id}}</td>
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.cpf}}</td>
+            <td>{{cliente.endereco}}</td>
+            <td>{{cliente.numero}}</td>
+            <td><a href="cliente/editar/{{cliente.id}}"><i class="fas fa-edit"></i></a></td>
+        </tr>       
+    </tbody>
+</table>

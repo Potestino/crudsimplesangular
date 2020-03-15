@@ -1,0 +1,77 @@
+<div *ngIf="seErroNoCadastro" class="alert alert-danger" role="alert">
+        Ocorreu um erro para salvar o cliente!
+    </div>
+    <div *ngIf="seSucessoNoCadastro" class="alert alert-success" role="alert">
+        {{ msgSucesso }}
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="cliForm" novalidate>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Nome Cliente</label>
+                            <input type="text" style="display: none;" formControlName="id" #id [(ngModel)] = "cliente.id" />
+                            <input type="text" class="form-control" formControlName="nomecliente" #nomecliente [(ngModel)] = "cliente.nome" />
+                        </div>
+                        <div *ngIf="cliForm.controls['nomecliente'].invalid && (cliForm.controls['nomecliente'].dirty || cliForm.controls['nomecliente'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="cliForm.controls['nomecliente'].errors.required">
+                                Nome Cliente é obrigatorio.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>CPF </label>
+                            <input mask="000.000.000-00" type="text" class="form-control" formControlName="cpf" #cpf [(ngModel)] = "cliente.cpf" />
+                        </div>
+                        <div *ngIf="cliForm.controls['cpf'].invalid && (cliForm.controls['cpf'].touched)" class="alert alert-danger">
+                            <div>
+                                CPF invalido!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-10">
+                        <div class="form-group">
+                            <label>Endereço </label>
+                            <input type="text" class="form-control" formControlName="endereco" #endereco [(ngModel)] = "cliente.endereco" />
+                        </div>
+                        <div *ngIf="cliForm.controls['endereco'].invalid && (cliForm.controls['endereco'].dirty || cliForm.controls['endereco'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="cliForm.controls['endereco'].errors.required">
+                                Endereço é obrigatorio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <div class="form-group">
+                            <label>Numero </label>
+                            <input type="text" class="form-control" formControlName="numero" #numero [(ngModel)] = "cliente.numero"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-10">
+                        <div class="form-group">
+                            <button (click)="salvar(cliente)"
+                                [disabled]="cliForm.invalid" class="btn btn-primary">
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <div class="form-group">
+                            <a href="/cliente/listar" class="btn btn-secondary float-right">
+                                Voltar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
