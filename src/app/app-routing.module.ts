@@ -7,6 +7,11 @@ import { AdicionarComponent } from './cliente/adicionar/adicionar.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: "cliente/listar",
+    pathMatch: 'full'
+  },
+  {
     path: 'cliente/listar',
     component: ListarComponent
   },
